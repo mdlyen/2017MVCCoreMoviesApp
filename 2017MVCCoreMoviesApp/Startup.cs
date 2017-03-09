@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Movies.Web.Models;
 
 namespace _2017MVCCoreMoviesApp
 {
@@ -23,6 +24,12 @@ namespace _2017MVCCoreMoviesApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddOptions();
+
+            // Add my services
+            services.AddDbContext<MovieDbContext>();
+            services.AddSingleton(Configuration);
+            
             // Add framework services.
             services.AddMvc();
         }
@@ -43,6 +50,7 @@ namespace _2017MVCCoreMoviesApp
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            app.UseStatusCodePages();
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
