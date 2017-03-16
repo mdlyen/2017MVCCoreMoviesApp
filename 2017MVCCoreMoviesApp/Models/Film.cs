@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Movies.Web.Models
 {
     [Table("Film")]
-    public partial class Film
+    public sealed class Film
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Film()
@@ -46,16 +46,16 @@ namespace Movies.Web.Models
         public int? OscarWins { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Cast> Casts { get; set; }
+        public ICollection<Cast> Casts { get; set; }
 
-        public virtual Director Director { get; set; }
+        public Director Director { get; set; }
 
-        public virtual Certificate Certificate { get; set; }
+        public Certificate Certificate { get; set; }
 
-        public virtual Country Country { get; set; }
+        public Country Country { get; set; }
 
-        public virtual Language Language { get; set; }
+        public Language Language { get; set; }
 
-        public virtual Studio Studio { get; set; }
+        public Studio Studio { get; set; }
     }
 }

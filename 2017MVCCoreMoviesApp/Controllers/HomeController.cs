@@ -1,16 +1,15 @@
-﻿using System.Linq;
-using Microsoft.AspNetCore.Mvc;
-using Movies.Web.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using Movies.Web.Services;
 
 namespace _2017MVCCoreMoviesApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly MovieDbContext _movieDbContext;
+        private readonly IMovieRepository _movieRepository;
 
-        public HomeController(MovieDbContext movieDbContext)
+        public HomeController(IMovieRepository movieRepository)
         {
-            _movieDbContext = movieDbContext;
+            _movieRepository = movieRepository;
         }
 
         public IActionResult Index()
@@ -20,7 +19,9 @@ namespace _2017MVCCoreMoviesApp.Controllers
 
         public IActionResult Films()
         {
-            return View(_movieDbContext.Films.OrderBy(x => x.Title));
+            var allFilms = _movieRepository.GetAllFilms();
+
+            return View(allFilms);
         }
 
         public IActionResult Error()

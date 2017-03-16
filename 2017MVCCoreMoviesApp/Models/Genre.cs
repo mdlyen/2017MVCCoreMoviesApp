@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Movies.Web.Models
 {
     [Table("Genre")]
-    public partial class Genre
+    public class Genre
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }

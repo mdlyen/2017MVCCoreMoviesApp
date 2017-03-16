@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Movies.Models.DTO;
 using Movies.Web.Models;
+using Movies.Web.Services;
 
 namespace _2017MVCCoreMoviesApp
 {
@@ -29,6 +31,8 @@ namespace _2017MVCCoreMoviesApp
             // Add my services
             services.AddDbContext<MovieDbContext>();
             services.AddSingleton(Configuration);
+            services.AddTransient<IMovieRepository, MovieRepository>();
+            services.AddSingleton<IDTOFactory, DTOFactory>();
             
             // Add framework services.
             services.AddMvc();
