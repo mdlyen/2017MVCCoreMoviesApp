@@ -1,25 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Movies.Web.Services;
 
-namespace _2017MVCCoreMoviesApp.Controllers
+namespace MoviesApp.Controllers
 {
-    public class HomeController : Controller
+    public class FilmController : Controller
     {
         private readonly IMovieRepository _movieRepository;
 
-        public HomeController(IMovieRepository movieRepository)
+        public FilmController(IMovieRepository movieRepository)
         {
             _movieRepository = movieRepository;
         }
 
+        // GET: /<controller>/
         public IActionResult Index()
         {
-            return View();
-        }
+            var allFilms = _movieRepository.GetAllFilms();
 
-        public IActionResult Error()
-        {
-            return View();
+            return View(allFilms);
         }
     }
 }
