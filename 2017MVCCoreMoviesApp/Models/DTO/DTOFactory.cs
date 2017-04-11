@@ -7,7 +7,7 @@ namespace Movies.Models.DTO
     {
         public FilmDTO Map(Film film)
         {
-            //TODO: Replace with Automapper.
+            //TODO: Replace with Automapper?
             return new FilmDTO
             {
                 Id = film.Id,
@@ -15,6 +15,14 @@ namespace Movies.Models.DTO
                 ReleaseYear = film.ReleaseDate.Year(),
                 Director = film.Director?.FullName
             };
+        }
+
+        public Film Map(FilmDTO filmDTO, Film film)
+        {
+            //TODO: Finish mapping all of filmDTO
+            film.Title = filmDTO.Title;
+
+            return film;
         }
     }
 }

@@ -21,6 +21,10 @@
                 <td>@f.Title</td>
                 <td>@f.ReleaseYear</td>
                 <td>@f.Director</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@f.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@f.Id">Details</a>
+                </td>
             </tr>
         }
     </tbody>

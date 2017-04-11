@@ -36,5 +36,37 @@ namespace Movies.Web.Services
         {
             return _dtoFactory.Map(_movieDbContext.Films.Include(x=>x.Director).Single(x => x.Id == filmid));
         }
+
+        public bool SaveFilmDTO(FilmDTO filmDTO)
+        {
+            Film film;
+            
+            try
+            {
+                // Map DTO to entity
+                film = _dtoFactory.Map(filmDTO, _movieDbContext.Films.Single(x => x.Id == filmDTO.Id));
+
+                // Update object in context.
+                _movieDbContext.Update(film);
+            }
+            catch
+            {
+                return false;
+            }
+
+            // Let's make sure we only updated 1 record and return record from database if successful.
+            switch (_movieDbContext.SaveChanges())
+            {
+                case 1:
+                    return true;
+                default:
+                    throw new DbUpdateException("Error updating film record.", innerException: null);
+            }
+        }
+
+        public bool FilmDTOExists(int id)
+        {
+            return _movieDbContext.Films.Any(x => x.Id == id);
+        }
     }
 }

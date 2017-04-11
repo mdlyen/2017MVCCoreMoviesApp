@@ -7,5 +7,7 @@ namespace Movies.Web.Services
     {
         IEnumerable<FilmDTO> GetAllFilms();
         FilmDTO GetFilmDTO(int filmid);
+        bool FilmDTOExists(int id);
+        bool SaveFilmDTO(FilmDTO filmDTO);
     }
 }
